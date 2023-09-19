@@ -10,7 +10,7 @@ function Home() {
                 <Row className='mt-4 mb-4'>
                     <Col className='bg-light p-3'>
                         <span className='d-flex'>
-                            <img src='img/sun.svg' className='w-25'></img>
+                            <img src='../img/sun.svg' className='w-25'></img>
                             <span className='p-2'>
                                 <span className='fw-bold'>TODAY</span><br></br>
                                 <span className='fw-bold'>TUE 09/19</span><br></br>
@@ -22,7 +22,7 @@ function Home() {
                     </Col>
                     <Col className='bg-light p-3'>
                         <span className='d-flex'>
-                            <img src='img/moon.svg' className='w-25'></img>
+                            <img src='../img/moon.svg' className='w-25'></img>
                             <span  className='p-2'>
                                 <span className='fw-bold'>TONIGHT</span><br></br>
                                 <span className='fw-bold'>TUE 09/19</span><br></br>
@@ -34,7 +34,7 @@ function Home() {
                     </Col>
                     <Col className='bg-light p-3'>
                         <span className='d-flex'>
-                            <img src='img/sun.svg' className='w-25'></img>
+                            <img src='../img/sun.svg' className='w-25'></img>
                             <span  className='p-2'>
                                 <span className='fw-bold'>TOMORROW</span><br></br>
                                 <span className='fw-bold'>TUE 09/20</span><br></br>
