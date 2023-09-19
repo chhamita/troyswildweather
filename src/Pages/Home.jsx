@@ -1,6 +1,8 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import sun from 'img/sun.svg';
+
 function Home() {
     return (
         <>
@@ -8,7 +10,7 @@ function Home() {
                 <Row className='mt-4 mb-4'>
                     <Col className='bg-light p-3'>
                         <span className='d-flex'>
-                            <img src='img/sun.svg' className='w-25'></img>
+                            <img src={sun} className='w-25'></img>
                             <span className='p-2'>
                                 <span className='fw-bold'>TODAY</span><br></br>
                                 <span className='fw-bold'>TUE 09/19</span><br></br>
