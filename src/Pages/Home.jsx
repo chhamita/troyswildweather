@@ -1,10 +1,36 @@
+import * as React from 'react'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import '../assets/scss/style.scss'
-// import sun from '../../dist/img/sun.svg';
+import { AxiosInstance } from '../Utils'
 
 function Home() {
+    const [weatherData, setWeatherData] = React.useState(null);
+
+    React.useEffect(() => {
+        async function fetchWeatherData() {
+            try {
+                const response = await AxiosInstance.get("/future.json", {
+                    params: {
+                        q: "India",
+                        dt: "2023-10-19",
+                    },
+                });
+                // Assuming the response contains the weather data you need
+                setWeatherData(response.data);
+                
+            } catch (error) {
+                console.error("Error fetching weather data:", error);
+            }
+        }
+
+        // Call the fetchWeatherData function when the component mounts
+        fetchWeatherData();
+    }, []);
+    console.log('weatherData',weatherData);
+    console.log('data');
+   
     return (
         <>
             <Container className=''>
@@ -98,12 +124,13 @@ function Home() {
 
                 </Row>
                 <Row className=''>
-                    <h2>Today's Forecast for Teen Murti Marg Area, Delhi</h2>
-
+                    <h2>Todays Forecast for Teen Murti Marg Area, Delhi</h2>
                 </Row>
 
 
             </Container>
+
+          
         </>
     )
 }

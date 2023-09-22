@@ -3,6 +3,7 @@ import Home from './Pages/Home';
 import { Routes, Route } from "react-router-dom";
 import Header from './Components/Header';
 import Footer from './Components/Footer';
+import Hourly from './Pages/Hourly';
 function App() {
 
 
@@ -10,10 +11,11 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route path="/home" element={<Home />}>
-        </Route>
+        <Route path="/home" element={<Home />}></Route>
+        <Route path="/hourly" element={<Hourly />}></Route>
+        
       </Routes>
-<Footer/>
+      <Footer />
     </>
 
   )

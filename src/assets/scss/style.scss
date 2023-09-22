@@ -1,3 +1,36 @@
 .bg-color-gray {
     background-color: #e7e7e7;
 }
+.carousel-indicators{
+    display: none;
+}
+.carousel-control-next-icon {
+    position: absolute;
+    top: 19px;
+}
+.carousel-control-prev-icon {
+    position: absolute;
+    top: 19px;
+}
+.bg-gradient-header{
+    background: linear-gradient(180deg, rgba(87, 45, 128, 1) 0%, rgba(55, 132, 179, 1) 83%);
+}
+ .btn-primary{
+    background: #683ecc;
+    border-color: #683ecc;
+ }
+  .btn-primary:hover{
+    background: #5e26e9;
+        border-color: #5e26e9;
+  }
+   .btn-primary:active {
+       background: #5e26e9;
+       border-color: #5e26e9;
+   }
+   .btn-primary:visited {
+       background: #5e26e9;
+       border-color: #5e26e9;
+   }
+   .custom-img-height {
+    height: 40px; /* Set your desired height here */
+  }
