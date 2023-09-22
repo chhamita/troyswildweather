@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Header from './Components/Header';
 import Footer from './Components/Footer';
 import Hourly from './Pages/Hourly';
+import TenDays from './Pages/TenDays';
 function App() {
 
 
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/home" element={<Home />}></Route>
         <Route path="/hourly" element={<Hourly />}></Route>
+        <Route path="/tendays" element={<TenDays />}></Route>
         
       </Routes>
       <Footer />

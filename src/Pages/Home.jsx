@@ -11,10 +11,10 @@ function Home() {
     React.useEffect(() => {
         async function fetchWeatherData() {
             try {
-                const response = await AxiosInstance.get("/future.json", {
+                const response = await AxiosInstance.get("/current.json", {
                     params: {
                         q: "India",
-                        dt: "2023-10-19",
+                      
                     },
                 });
                 // Assuming the response contains the weather data you need
@@ -136,3 +136,8 @@ function Home() {
 }
 
 export default Home
+
+
+
+
+
