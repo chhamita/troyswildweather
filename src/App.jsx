@@ -5,6 +5,7 @@ import Header from './Components/Header';
 import Footer from './Components/Footer';
 import Hourly from './Pages/Hourly';
 import TenDays from './Pages/TenDays';
+import Radar from './Components/Radar';
 function App() {
 
 
@@ -15,7 +16,7 @@ function App() {
         <Route path="/home" element={<Home />}></Route>
         <Route path="/hourly" element={<Hourly />}></Route>
         <Route path="/tendays" element={<TenDays />}></Route>
-        
+        <Route path="/radar" element={<Radar />}></Route>
       </Routes>
       <Footer />
     </>

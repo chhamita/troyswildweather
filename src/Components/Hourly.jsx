@@ -1,73 +1,19 @@
-import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
-import { AxiosInstance } from '../Utils';
-import axios from 'axios';
 
-function Hourly() {
-    //   const [weatherData, setWeatherData] = React.useState(null);
-    const [hourlyData, setHourlyData] = React.useState([]);
-    const [astro, setAstro] = React.useState(null);
-    const [region, setRegion] = React.useState(null);
-    //   const [countryName, setCountryName] = React.useState('Unknown');
-    const [loading, setLoading] = React.useState(true);
 
-    React.useEffect(() => {
-        const currentDate = new Date();
-        const year = currentDate.getFullYear();
-        const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-        const day = String(currentDate.getDate()).padStart(2, '0');
-        const formattedDate = `${year}-${month}-${day}`;
-
-        const fetchCountryFromIP = async () => {
-            try {
-                const response = await axios.get('https://ipinfo.io/json?token=c68192fd24aa17');
-                setRegion(response.data.region);
-                //setCountryName(response.data.country || 'Unknown');
-            } catch (error) {
-                console.error('Error fetching IP geolocation data:', error);
-            }
-        };
-
-        fetchCountryFromIP();
-
-        if (region) {
-            const fetchWeatherData = async () => {
-                try {
-                    const response = await AxiosInstance.get('/forecast.json', {
-                        params: {
-                            q: region,
-                            dt: formattedDate,
-                            days: '1',
-                            aqi: 'yes',
-                            alerts: 'yes',
-                        },
-                    });
-
-                    //   setWeatherData(response.data);
-                    const extractedHourlyData = response.data?.forecast?.forecastday?.[0]?.hour || [];
-                    setHourlyData(extractedHourlyData);
-                    const astroData = response.data?.forecast?.forecastday?.[0]?.astro || null;
-                    setAstro(astroData);
-                } catch (error) {
-                    console.error('Error fetching weather data:', error);
-                } finally {
-                    setLoading(false);
-                }
-            };
-
-            fetchWeatherData();
-        }
-    }, [region]);
-
+function Hourly(props) {
+    let hourlyData = props.hourlyData;
+    let astro = props.astro;
+  
     return (
         <Container className="mt-4">
             <Row className="mt-8 mb-6">
                 <Col>
                     <span className="d-flex">
-                        <img src="../img/sun-png.png" width={50} alt="Sun Icon" />
+                        <img src="../img/sun-png.png" width={100} alt="Sun Icon" />
                         <span className="m-3">
                             <span className="fw-bold">Sun</span>
                             <br />
@@ -82,7 +28,7 @@ function Hourly() {
                 </Col>
                 <Col>
                     <span className="d-flex">
-                        <img src="../img/moonrise.png" width={50} alt="Moonrise Icon" />
+                        <img src="../img/moonrise.png" width={100} alt="Moonrise Icon" />
                         <span className="p-3">
                             <span className="fw-bold">Moon</span>
                             <br />
@@ -98,9 +44,7 @@ function Hourly() {
             </Row>
 
             <Row className="mt-5">
-                {loading ? (
-                    <p>Loading...</p>
-                ) : hourlyData.length > 0 ? (
+                {hourlyData && hourlyData.length > 0 ? (
                     <Table responsive striped bordered>
                         <thead>
                             <tr>
@@ -147,7 +91,7 @@ function Hourly() {
                 )}
             </Row>
         </Container>
-    );
+    )
 }
 
-export default Hourly;
+export default Hourly
