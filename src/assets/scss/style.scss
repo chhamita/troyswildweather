@@ -88,3 +88,15 @@
 .list-group-horizontal>.list-group-item{
     flex: 0 0 100px;
 }
+.wrapper{min-height: calc(100vh - 259px);}
+.carousel-control-next, .carousel-control-prev{
+    bottom: auto;width: auto;top: 15px;
+    display: inline-block;}
+
+    .news-img-box img{width: 147px;}
+    .history-accordion .list-group-item span {
+        min-width: 200px;text-align: center;
+    }
+    .history-accordion .list-group-item span:first-child {
+        min-width: 400px;text-align: left;
+    }

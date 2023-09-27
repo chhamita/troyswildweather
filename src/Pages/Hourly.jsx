@@ -7,11 +7,11 @@ import { AxiosInstance } from '../Utils';
 import axios from 'axios';
 
 function Hourly() {
-    //   const [weatherData, setWeatherData] = React.useState(null);
+    // const [weatherData, setWeatherData] = React.useState(null);
     const [hourlyData, setHourlyData] = React.useState([]);
     const [astro, setAstro] = React.useState(null);
     const [region, setRegion] = React.useState(null);
-    //   const [countryName, setCountryName] = React.useState('Unknown');
+    // const [countryName, setCountryName] = React.useState('Unknown');
     const [loading, setLoading] = React.useState(true);
 
     React.useEffect(() => {

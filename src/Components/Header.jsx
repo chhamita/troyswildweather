@@ -12,6 +12,7 @@ import Hourly from './Hourly';
 import Days from './Days';
 import Today from './Today';
 import News from './News';
+import History from './History';
 
 function Header() {
     const [searchQuery, setSearchQuery] = React.useState('');
@@ -110,7 +111,7 @@ function Header() {
             const fetchNewsData = () => {
                 // Fetch news data
                 const apiKey = '7a5ef014b6e5fc32bcf3a759280c7e08';
-                const country = 'IN'; // Replace with the desired country code
+                const country = region; // Replace with the desired country code
                 const keywords = 'weather OR climate';
                 const encodedKeywords = encodeURIComponent(keywords);
 
@@ -126,8 +127,6 @@ function Header() {
             };
             fetchNewsData()
         }
-
-
     }, [region]);
     // Event handler for handling user input in the search field
     const handleSearchInputChange = (e) => {
@@ -140,11 +139,10 @@ function Header() {
             setRegion(location)
         }
     }, [searchValue, location])
-    // Event handler for handling the search button click
+
     const handleSearchClick = () => {
         setSearchValue(searchQuery)
-        // Store the search query in local storage
-        // localStorage.setItem('searchLocation', searchQuery);
+  
     };
     console.log(region)
     return (
@@ -186,8 +184,8 @@ function Header() {
                 className="mb-3"
                 justify
             >
-                <Tab eventKey="today" title="Today">
-                    <Today />
+                <Tab eventKey="today" title="Today" >
+                    <Today currentWeather={currentWeather}/>
                 </Tab>
                 <Tab eventKey="Hourly" title="Hourly">
                     <Hourly hourlyData={hourlyData} astro={astro} />
@@ -197,10 +195,10 @@ function Header() {
                     <Days weatherData={tenDaysWeather} />
                 </Tab>
                 <Tab eventKey="history" title="History" >
-
+                    <History/>
                 </Tab>
                 <Tab eventKey="news" title="News" >
-                    <News newsData={newsData}/>
+                    <News newsData={newsData} />
 
                 </Tab>
                 <Tab eventKey="radar" title="Radar" >
