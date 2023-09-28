@@ -11,28 +11,42 @@ import { faWind } from '@fortawesome/free-solid-svg-icons'
 import { faEye } from '@fortawesome/free-solid-svg-icons'
 import Card from 'react-bootstrap/Card';
 
-function Today() {
+function Today(props) {
+    let currentWeather = props.currentWeather
+    console.log(currentWeather,'currentWeather')
+    if (!currentWeather) {
+        return null; // or render a loading message or fallback content
+      }
   return (
     <Container className=''>
-    <Card className='bg-light mt-3' >
+    <Card className='bg-light mt-3'>
         <Card.Header className="fw-normal fs-4" style={{ color: '#fff', backgroundColor: '#3D3849' }}>
-            City of London, Greater London As of 07:01 GMT
+          {currentWeather.current && currentWeather.current.last_updated}
         </Card.Header>
         <Card.Body style={{ color: '#fff', backgroundColor: '#736792' }}>
-            <Card.Title >
-                <span>
-                    <img src='../img/clouds.png' width={80}></img>
-                    <span className="fw-bolder fs-1 ps-3">33°</span>
-                </span>
-                <span className='float-end'><h5 className="fw-bold fs-4">Day 33°. Night 23°</h5></span>
-                <h5>Partly Cloudy</h5>
-
-            </Card.Title>
-            <Card.Text>
-
-            </Card.Text>
+          <Card.Title>
+            <span>
+              {currentWeather.current.condition && (
+                <img src={currentWeather.current.condition.icon} width={100} alt="Weather Icon" />
+              )}
+              <span className="fw-bolder fs-1 ps-3">
+                {currentWeather.current.feelslike_c}°
+              </span>
+            </span>
+            <span className='float-end'>
+              {currentWeather.current &&
+                <h5 className="fw-bold fs-4">
+                   {currentWeather.current.temp_c}°
+                </h5>
+              }
+            </span>
+            {currentWeather.current.condition && (
+              <h5>{currentWeather.current.condition.text}</h5>
+            )}
+          </Card.Title>
+          <Card.Text></Card.Text>
         </Card.Body>
-    </Card>
+      </Card>
     <Row className='my-4'>
         <Col className='pe-0'>
             <div className='bg-light p-3 h-100'>
@@ -79,21 +93,21 @@ function Today() {
     <Row className='mb-4'>
         <Col className='' >
             <div className='bg-light' >
-                <h4 className='mb-0 px-3 py-2 bg-secondary text-white'>Weather Today in City of London, Greater London</h4>
+                <h4 className='mb-0 px-3 py-2 bg-secondary text-white'>Weather Today</h4>
                 <div className='p-4'>
                     <Row>
                         <Col>
                             <h6 className=''>Feels Like </h6>
-                            <h4 className='fs-2'>38°</h4>
+                            <h4 className='fs-2'>{currentWeather.current.feelslike_c}°</h4>
                         </Col>
-                        <Col>
+                        {/* <Col>
                             <span className='d-inline-block'>
                                 <img src='../img/rise.png' width={50} className='ps-3'></img> 6:00 am
                             </span>
                             <span className='d-inline-block'>
                                 <img src='../img/rise.png' width={50} className='ps-3'></img> 7:00 am
                             </span>                                  
-                        </Col>
+                        </Col> */}
                     </Row>
 
                     <Row>
@@ -101,23 +115,23 @@ function Today() {
                             <div className=''>
                                 <ListGroup className=""  >
                                     <ListGroup.Item className='bg-light'>
-                                        <span className='float-start'><FontAwesomeIcon icon={faTemperatureHigh} /> High/Low</span>
-                                        <span className='float-end'>34°/26°</span>
+                                        <span className='float-start'><FontAwesomeIcon icon={faTemperatureHigh} /> Temprature</span>
+                                        <span className='float-end'> {currentWeather.current.temp_c} ° C</span>
                                     </ListGroup.Item>
                                     <ListGroup.Item className='border-top bg-light'>
                                         <span className='float-start'><FontAwesomeIcon icon={faDroplet} /> Humidity</span>
-                                        <span className='float-end '>   75%</span>
+                                        <span className='float-end '>   {currentWeather.current.humidity}%</span>
                                     </ListGroup.Item>
                                     <ListGroup.Item className='border-top bg-light'>
                                         <span className='float-start p-1'><FontAwesomeIcon icon={faPooStorm} /> Pressure
                                         </span>
-                                        <span className='float-end'>   1006.4 mb</span>
+                                        <span className='float-end'>   {currentWeather.current.pressure_mb} mb</span>
                                     </ListGroup.Item>
                                     <ListGroup.Item className='border-top bg-light'>
                                         <span className='float-start p-1'><FontAwesomeIcon icon={faEye} /> Visibility
                                         </span>
                                         <span className='float-end'>
-                                            2.41 km</span>
+                                         {currentWeather.current.vis_km} km</span>
                                     </ListGroup.Item>
                                 </ListGroup>
                             </div>
@@ -125,25 +139,25 @@ function Today() {
                         <Col>
                             <div className=''>
                                 <ListGroup className=""  >
-                                    <ListGroup.Item className='border-top bg-light rounded-0' flush>
+                                    <ListGroup.Item className='border-top bg-light rounded-0'>
                                         <span className='float-start'><FontAwesomeIcon icon={faWind} /> Wind</span>
-                                        <span className='float-end'>  6 km/h</span>
+                                        <span className='float-end'> {currentWeather.current.wind_kph}  km/h</span>
                                     </ListGroup.Item>
                                     <ListGroup.Item className='border-top bg-light'>
-                                        <span className='float-start'><FontAwesomeIcon icon={faDroplet} /> Dew Point</span>
-                                        <span className='float-end '>   26°</span>
+                                        <span className='float-start'><FontAwesomeIcon icon={faDroplet} />Preciption </span>
+                                        <span className='float-end '> {currentWeather.current.precip_in} % </span>
                                     </ListGroup.Item>
                                     <ListGroup.Item className='border-top bg-light'>
                                         <span className='float-start p-1'><FontAwesomeIcon icon={faPooStorm} /> UV Index
                                         </span>
-                                        <span className='float-end'>  1 of 11</span>
+                                        <span className='float-end'> {currentWeather.current.uv} </span>
                                     </ListGroup.Item>
                                     <ListGroup.Item className='border-top bg-light'>
-                                        <span className='float-start p-1'><FontAwesomeIcon icon={faEye} /> Moon Phase
+                                        <span className='float-start p-1'><FontAwesomeIcon icon={faEye} /> Gust
                                         </span>
                                         <span className='float-end'>
-
-                                            First Quarter</span>
+                                        
+                                        {currentWeather.current.gust_kph} km/h</span>
                                     </ListGroup.Item>
                                 </ListGroup>
                             </div>

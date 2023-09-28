@@ -24,6 +24,7 @@ function Header() {
     const [searchValue, setSearchValue] = React.useState();
     const [location, setLocation] = React.useState();
     const [newsData, setNewsData] = React.useState([]);
+    const [HistoryData, setHistoryData] = React.useState([]);
 
     React.useEffect(() => {
         const currentDate = new Date();
@@ -126,6 +127,45 @@ function Header() {
                     });
             };
             fetchNewsData()
+
+
+            const fetchHistoryData = async (date) => {
+                const API_KEY = '87a7f6cf7ac6474b8fb134942231309';
+                try {
+                    const formattedDate = date.toISOString().split('T')[0];
+                    const apiUrl = `http://api.weatherapi.com/v1/history.json?key=${API_KEY}&q=${region}&dt=${formattedDate}`;
+                    const response = await fetch(apiUrl);
+                    const data = await response.json();
+                    return data;
+                } catch (error) {
+                    console.error('Error fetching historical weather data:', error);
+                    return null;
+                }
+            };
+    
+            // Get the current date
+            const currentDate = new Date();
+    
+            // Generate an array of the last 7 days' dates
+            const last7Days = [];
+            for (let i = 0; i < 7; i++) {
+                const date = new Date(currentDate);
+                date.setDate(currentDate.getDate() - i);
+                last7Days.push(date);
+            }
+    
+            // Fetch weather data for each date in parallel
+            Promise.all(last7Days.map(fetchHistoryData))
+                .then((data) => {
+                    // Filter out null responses (failed requests)
+                    const validData = data.filter((item) => item !== null);
+                    setHistoryData(validData);
+                })
+                .catch((error) => {
+                    console.error('Error fetching historical weather data:', error);
+                });
+
+
         }
     }, [region]);
     // Event handler for handling user input in the search field
@@ -195,7 +235,7 @@ function Header() {
                     <Days weatherData={tenDaysWeather} />
                 </Tab>
                 <Tab eventKey="history" title="History" >
-                    <History/>
+                    <History HistoryData={HistoryData}/>
                 </Tab>
                 <Tab eventKey="news" title="News" >
                     <News newsData={newsData} />

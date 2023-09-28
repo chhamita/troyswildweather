@@ -1,8 +1,8 @@
-import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom';
 // import /public/img/logo.png from '/public/img/logo.png';
 
 function News(props) {
@@ -19,7 +19,8 @@ function News(props) {
                                 <ul className='list-unstyled mb-0'>
                                     {newsData.map((article) => (
                                         <li key={article.title}>
-                                            <a to="/" className='d-flex text-decoration-none text-black py-3'>
+                                            
+                                            <a to={`/news/${article.id}`} className='d-flex text-decoration-none text-black py-3'>
                                                 <div className='news-img-box '>
                                                     <img src={article.image} width={200} className='rounded' />
                                                 </div>

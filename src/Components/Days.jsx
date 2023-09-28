@@ -11,17 +11,17 @@ import { faDroplet } from '@fortawesome/free-solid-svg-icons'
 import { faWind } from '@fortawesome/free-solid-svg-icons'
 import { faDownload } from '@fortawesome/free-solid-svg-icons'
 import { faSun } from '@fortawesome/free-solid-svg-icons'
-import Table from 'react-bootstrap/Table';
+
 
 function Days(props) {
     let weatherData = props.weatherData;
     if (!weatherData || !weatherData.forecast || !weatherData.forecast.forecastday) {
         return <p>No weather data available.</p>;
-      }
+    }
     return (
 
         <>
-     
+
             <Container >
                 <Row className='my-3'>
                     <Col>
@@ -32,11 +32,10 @@ function Days(props) {
                                 </div>
                                 <Accordion defaultActiveKey="0" className='' >
 
-
                                     {weatherData.forecast.forecastday.map((day, index) => (
                                         <Accordion.Item eventKey={index.toString()} key={day.date_epoch} className='border-0 border-top rounded-0'>
                                             <Accordion.Header>
-                                                <ListGroup horizontal className="w-100 justify-content-between align-items-center" variant="flush" >
+                                                <ListGroup horizontal className="w-100 justify-content-between align-items-center" >
                                                     <ListGroup.Item className=''>{day.date}</ListGroup.Item>
                                                     <ListGroup.Item className=''>{`${day.day.maxtemp_f}°/${day.day.mintemp_f}°`}</ListGroup.Item>
                                                     <ListGroup.Item className='flex-fill'>
@@ -104,11 +103,11 @@ function Days(props) {
                                                 </Card>
                                             </Accordion.Body>
                                         </Accordion.Item>
-                                    
-                                    
+
+
                                     ))}
 
-                                  
+
                                 </Accordion>
                             </Card.Body>
                         </Card>

@@ -28,7 +28,7 @@ function Home() {
             }
         };
         getCountryFromIP()
-        if (region) {
+        if (region){
             const fetchWeatherCurrent = async () => {
                 try {
                     const response = await AxiosInstance.get("/current.json", {
@@ -80,8 +80,8 @@ function Home() {
                     });
                     const extractedHourlyData = response.data?.forecast?.forecastday?.[0]?.hour || [];
                     setHourlyData(extractedHourlyData);
-                    const astroData = response.data?.forecast?.forecastday?.[0]?.astro || null;
-                    setAstro(astroData);
+                   
+                 
                 } catch (error) {
                     console.error('Error fetching weather data:', error);
                 } finally {
