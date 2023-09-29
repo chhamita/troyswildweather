@@ -7,7 +7,7 @@ import Table from 'react-bootstrap/Table';
 function Hourly(props) {
     let hourlyData = props.hourlyData;
     let astro = props.astro;
-  
+
     return (
         <Container className="mt-4">
             <Row className="mt-8 mb-6">

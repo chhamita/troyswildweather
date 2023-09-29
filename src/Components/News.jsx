@@ -15,12 +15,12 @@ function News(props) {
                     <Col>
                         <Card className='border-0 shadow mt-3' >
                             <Card.Body>
-                                <Card.Title className='mb-4'><h5 className='mb-0'>News</h5></Card.Title>
+                                <Card.Title className='mb-4'><h3 className='mb-0'>News</h3></Card.Title>
                                 <ul className='list-unstyled mb-0'>
                                     {newsData.map((article) => (
                                         <li key={article.title}>
                                             
-                                            <a to={`/news/${article.id}`} className='d-flex text-decoration-none text-black py-3'>
+                                            <Link  to={`/news/${encodeURIComponent(article.title)}`} className='d-flex text-decoration-none text-black py-3'>
                                                 <div className='news-img-box '>
                                                     <img src={article.image} width={200} className='rounded' />
                                                 </div>
@@ -29,7 +29,7 @@ function News(props) {
                                                     <div className="news-date small mb-1 text-secondary">{article.source.name}</div>
                                                     <div className="">{article.description}</div>
                                                 </div>
-                                            </a>
+                                            </Link>
                                         </li>
                                     ))}
                                 </ul>

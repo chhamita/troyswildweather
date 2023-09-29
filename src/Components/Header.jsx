@@ -132,37 +132,37 @@ function Header() {
             const fetchHistoryData = async (date) => {
                 const API_KEY = '87a7f6cf7ac6474b8fb134942231309';
                 try {
-                    const formattedDate = date.toISOString().split('T')[0];
-                    const apiUrl = `http://api.weatherapi.com/v1/history.json?key=${API_KEY}&q=${region}&dt=${formattedDate}`;
-                    const response = await fetch(apiUrl);
-                    const data = await response.json();
-                    return data;
+                  const formattedDate = date.toISOString().split('T')[0];
+                  const apiUrl = `http://api.weatherapi.com/v1/history.json?key=${API_KEY}&q=${region}&dt=${formattedDate}`;
+                  const response = await fetch(apiUrl);
+                  const data = await response.json();
+                  return data;
                 } catch (error) {
-                    console.error('Error fetching historical weather data:', error);
-                    return null;
+                  console.error('Error fetching historical weather data:', error);
+                  return null;
                 }
-            };
-    
-            // Get the current date
-            const currentDate = new Date();
-    
-            // Generate an array of the last 7 days' dates
-            const last7Days = [];
-            for (let i = 0; i < 7; i++) {
+              };
+              
+              // Get the current date
+              const currentDate = new Date();
+              
+              // Generate an array of the last 7 days' dates (excluding today)
+              const last7Days = [];
+              for (let i = 1; i <= 7; i++) {
                 const date = new Date(currentDate);
                 date.setDate(currentDate.getDate() - i);
                 last7Days.push(date);
-            }
-    
-            // Fetch weather data for each date in parallel
-            Promise.all(last7Days.map(fetchHistoryData))
+              }
+              
+              // Fetch weather data for each date in parallel
+              Promise.all(last7Days.map(fetchHistoryData))
                 .then((data) => {
-                    // Filter out null responses (failed requests)
-                    const validData = data.filter((item) => item !== null);
-                    setHistoryData(validData);
+                  // Filter out null responses (failed requests)
+                  const validData = data.filter((item) => item !== null);
+                  setHistoryData(validData);
                 })
                 .catch((error) => {
-                    console.error('Error fetching historical weather data:', error);
+                  console.error('Error fetching historical weather data:', error);
                 });
 
 
@@ -182,7 +182,7 @@ function Header() {
 
     const handleSearchClick = () => {
         setSearchValue(searchQuery)
-  
+
     };
     console.log(region)
     return (
@@ -225,17 +225,17 @@ function Header() {
                 justify
             >
                 <Tab eventKey="today" title="Today" >
-                    <Today currentWeather={currentWeather}/>
+                    <Today currentWeather={currentWeather} />
                 </Tab>
                 <Tab eventKey="Hourly" title="Hourly">
                     <Hourly hourlyData={hourlyData} astro={astro} />
 
                 </Tab>
-                <Tab eventKey="days" title="10 Days">
+                <Tab eventKey="days" title="3 Days">
                     <Days weatherData={tenDaysWeather} />
                 </Tab>
                 <Tab eventKey="history" title="History" >
-                    <History HistoryData={HistoryData}/>
+                    <History HistoryData={HistoryData} />
                 </Tab>
                 <Tab eventKey="news" title="News" >
                     <News newsData={newsData} />

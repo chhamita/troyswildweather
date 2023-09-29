@@ -27,7 +27,7 @@ function Days(props) {
                     <Col>
                         <Card className='border-0 shadow rounded'>
                             <Card.Body className='p-0'>
-                                <div className='p-3'><h3 className='pb-3 mb-0'>10-Days Weather  <span className='fs-6 fw-normal'> </span></h3>
+                                <div className='p-3'><h3 className='pb-3 mb-0'>3-Days Weather  <span className='fs-6 fw-normal'> </span></h3>
                                     {/* <p className='text-secondary'>As of 16:19 IST</p> */}
                                 </div>
                                 <Accordion defaultActiveKey="0" className='' >
