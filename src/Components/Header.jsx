@@ -130,39 +130,47 @@ function Header() {
 
 
             const fetchHistoryData = async (date) => {
-                const API_KEY = '87a7f6cf7ac6474b8fb134942231309';
+               // const API_KEY = '87a7f6cf7ac6474b8fb134942231309';
                 try {
-                  const formattedDate = date.toISOString().split('T')[0];
-                  const apiUrl = `http://api.weatherapi.com/v1/history.json?key=${API_KEY}&q=${region}&dt=${formattedDate}`;
-                  const response = await fetch(apiUrl);
-                  const data = await response.json();
-                  return data;
+                    const formattedDate = date.toISOString().split('T')[0];
+                    const response = await AxiosInstance.get('/history.json', {
+                        params: {
+                           
+                            q: region,
+                            dt: formattedDate,
+                        },
+                    });
+
+                    return response.data;
+                    
+
+
                 } catch (error) {
-                  console.error('Error fetching historical weather data:', error);
-                  return null;
+                    console.error('Error fetching historical weather data:', error);
+                    return null;
                 }
-              };
-              
-              // Get the current date
-              const currentDate = new Date();
-              
-              // Generate an array of the last 7 days' dates (excluding today)
-              const last7Days = [];
-              for (let i = 1; i <= 7; i++) {
+            };
+
+            // Get the current date
+            const currentDate = new Date();
+
+            // Generate an array of the last 7 days' dates (excluding today)
+            const last7Days = [];
+            for (let i = 1; i <= 7; i++) {
                 const date = new Date(currentDate);
                 date.setDate(currentDate.getDate() - i);
                 last7Days.push(date);
-              }
-              
-              // Fetch weather data for each date in parallel
-              Promise.all(last7Days.map(fetchHistoryData))
+            }
+
+            // Fetch weather data for each date in parallel
+            Promise.all(last7Days.map(fetchHistoryData))
                 .then((data) => {
-                  // Filter out null responses (failed requests)
-                  const validData = data.filter((item) => item !== null);
-                  setHistoryData(validData);
+                    // Filter out null responses (failed requests)
+                    const validData = data.filter((item) => item !== null);
+                    setHistoryData(validData);
                 })
                 .catch((error) => {
-                  console.error('Error fetching historical weather data:', error);
+                    console.error('Error fetching historical weather data:', error);
                 });
 
 
