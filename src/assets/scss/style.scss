@@ -147,3 +147,12 @@
     min-width: 400px;
     text-align: left;
 }
+.cloud_bg{
+    // background-image: url(/public/img/cloud_bg.jpg);    background-repeat: no-repeat;
+    // background-size: cover;
+    // background-position: center center;
+    background-image: linear-gradient(180deg, rgb(87, 45, 128) 0%, rgb(55, 132, 179) 83%);
+}
+.cloud_weather{
+    margin-left:16px;
+}

@@ -4,9 +4,11 @@ import { Routes, Route } from "react-router-dom";
 import Header from './Components/Header';
 import Footer from './Components/Footer';
 import Radar from './Components/Radar';
+import SingleNews from './Pages/singleNews';
 
 
-function App() {
+
+function App({ newsData }) {
 
 
   return (
@@ -15,6 +17,8 @@ function App() {
       <Routes>
         <Route path="/home" element={<Home />}></Route>
         <Route path="/radar" element={<Radar />}></Route>
+        <Route path="/news/:title" render={(props) => <SingleNews {...props} newsData={newsData} />} />
+        {/* <Route path="/news" element={<SingleNews />} /> */}
       </Routes>
       <Footer />
     </>

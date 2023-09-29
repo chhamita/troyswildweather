@@ -37,7 +37,7 @@ function Header() {
             try {
                 const response = await axios.get('https://ipinfo.io/json?token=c68192fd24aa17');
 
-                setLocation(response.data.region)
+                setLocation(response.data.loc)
 
 
             } catch (error) {
@@ -115,18 +115,20 @@ function Header() {
                 const country = region; // Replace with the desired country code
                 const keywords = 'weather OR climate';
                 const encodedKeywords = encodeURIComponent(keywords);
-
+              
+                // Include the "content" parameter in the API request
                 axios
-                    .get(`https://gnews.io/api/v4/top-headlines?country=${country}&q=${encodedKeywords}&token=${apiKey}`)
-                    .then((response) => {
-                        const articles = response.data.articles;
-                        setNewsData(articles);
-                    })
-                    .catch((error) => {
-                        console.error('Error fetching news:', error);
-                    });
-            };
-            fetchNewsData()
+                  .get(`https://gnews.io/api/v4/top-headlines?country=${country}&q=${encodedKeywords}&token=${apiKey}&content=true`)
+                  .then((response) => {
+                    const articles = response.data.articles;
+                    setNewsData(articles);
+                  })
+                  .catch((error) => {
+                    console.error('Error fetching news:', error);
+                  });
+              };
+              
+              fetchNewsData();
 
 
             const fetchHistoryData = async (date) => {
@@ -192,7 +194,7 @@ function Header() {
         setSearchValue(searchQuery)
 
     };
-    console.log(region)
+   // console.log(region)
     return (
         <>
             <div className='bg-gradient-header text-white'>
