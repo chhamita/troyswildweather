@@ -115,36 +115,35 @@ function Header() {
                 const country = region; // Replace with the desired country code
                 const keywords = 'weather OR climate';
                 const encodedKeywords = encodeURIComponent(keywords);
-              
+
                 // Include the "content" parameter in the API request
                 axios
-                  .get(`https://gnews.io/api/v4/top-headlines?country=${country}&q=${encodedKeywords}&token=${apiKey}&content=true`)
-                  .then((response) => {
-                    const articles = response.data.articles;
-                    setNewsData(articles);
-                  })
-                  .catch((error) => {
-                    console.error('Error fetching news:', error);
-                  });
-              };
-              
-              fetchNewsData();
+                    .get(`https://gnews.io/api/v4/top-headlines?country=${country}&q=${encodedKeywords}&token=${apiKey}&content=true`)
+                    .then((response) => {
+                        const articles = response.data.articles;
+                        setNewsData(articles);
+                    })
+                    .catch((error) => {
+                        console.error('Error fetching news:', error);
+                    });
+            };
+
+            fetchNewsData();
 
 
             const fetchHistoryData = async (date) => {
-               // const API_KEY = '87a7f6cf7ac6474b8fb134942231309';
+                // const API_KEY = '87a7f6cf7ac6474b8fb134942231309';
                 try {
                     const formattedDate = date.toISOString().split('T')[0];
                     const response = await AxiosInstance.get('/history.json', {
                         params: {
-                           
                             q: region,
                             dt: formattedDate,
                         },
                     });
 
                     return response.data;
-                    
+
 
 
                 } catch (error) {
@@ -194,7 +193,7 @@ function Header() {
         setSearchValue(searchQuery)
 
     };
-   // console.log(region)
+    // console.log(region)
     return (
         <>
             <div className='bg-gradient-header text-white'>

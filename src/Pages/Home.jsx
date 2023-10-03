@@ -9,7 +9,7 @@ function Home() {
     const [tenDaysWeather, setTenDaysWeather] = React.useState(null);
     const [hourlyData, setHourlyData] = React.useState(null);
     const [region, setRegion] = React.useState();
-    
+
 
     React.useEffect(() => {
         const currentDate = new Date();
@@ -28,7 +28,7 @@ function Home() {
             }
         };
         getCountryFromIP()
-        if (region){
+        if (region) {
             const fetchWeatherCurrent = async () => {
                 try {
                     const response = await AxiosInstance.get("/current.json", {
@@ -56,9 +56,6 @@ function Home() {
                     });
 
                     setTenDaysWeather(response.data);
-
-
-
                 } catch (error) {
                     console.error('Error fetching weather data:', error);
                 } finally {
@@ -80,12 +77,12 @@ function Home() {
                     });
                     const extractedHourlyData = response.data?.forecast?.forecastday?.[0]?.hour || [];
                     setHourlyData(extractedHourlyData);
-                   
-                 
+
+
                 } catch (error) {
                     console.error('Error fetching weather data:', error);
                 } finally {
-                   // setLoading(false);
+                    // setLoading(false);
                 }
             };
             fetchHourlyData()
@@ -102,7 +99,7 @@ function Home() {
 
     return (
         <>
-          
+
 
 
         </>

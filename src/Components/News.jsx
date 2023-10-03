@@ -26,8 +26,6 @@ function News(props) {
                                         <div className="news-date small mb-1 text-secondary">{selectedArticle.source.name}</div>
                                         <div>{selectedArticle.description}</div>
                                         <p>{selectedArticle.content}</p>
-                                        
-                                        {/* Add more details as needed */}
                                     </div>
                                 ) : (
                                     <>

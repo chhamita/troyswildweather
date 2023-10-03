@@ -91,7 +91,7 @@ function Today(props) {
                     </div>
                 </Col>
             </Row>
-
+                                
             <Row className='mb-4'>
                 <Col className='' >
                     <div className='bg-light' >
@@ -126,20 +126,21 @@ function Today(props) {
                                                 <span className='float-start p-1'><FontAwesomeIcon icon={faEye} /> Visibility
                                                 </span>
                                                 <span className='float-end'>
-                                                    {currentWeather.current.vis_km} km</span>
+                                                    {currentWeather.current.vis_km} km
+                                                </span>
                                             </ListGroup.Item>
                                         </ListGroup>
                                     </div>
                                 </Col>
                                 <Col>
                                     <div className=''>
-                                        <ListGroup className=""  >
+                                        <ListGroup className="">
                                             <ListGroup.Item className='bg-light rounded-0'>
                                                 <span className='float-start'><FontAwesomeIcon icon={faWind} /> Wind</span>
                                                 <span className='float-end'> {currentWeather.current.wind_kph}  km/h</span>
                                             </ListGroup.Item>
                                             <ListGroup.Item className='border-top bg-light'>
-                                                <span className='float-start'><FontAwesomeIcon icon={faDroplet} />Preciption </span>
+                                                <span className='float-start'><FontAwesomeIcon icon={faDroplet} /> Preciption</span>
                                                 <span className='float-end '> {currentWeather.current.precip_in} % </span>
                                             </ListGroup.Item>
                                             <ListGroup.Item className='border-top bg-light'>
