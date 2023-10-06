@@ -155,3 +155,82 @@
 .cloud_weather {
     margin-left: 16px;
 }
+/*****4October***/
+iframe.radarMapIframe {
+    height: 500px;
+}
+/*iframe.radarMapIframe div#app-icon {
+    display: none;
+}*/
+#app-icon {
+    display: none !important;
+}
+/****5October****/
+
+  
+  .radarMapIframe {
+    width: 50%;
+    height: auto;
+  }
+  
+/******circleCss****/
+.conditions-circle-wrap {
+    display: inline-block;
+    margin: 10px;
+  }
+  
+  .conditions-circle {
+    width: 205px;
+    height: 205px;
+    margin: 15px 0;
+    border-radius: 50%;
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(rgb(218, 47, 47), rgb(236, 90, 52));z-index: 1;text-align: center;padding: 27px 0;
+  }
+  .conditions-circle::before{content: "";
+    background-color: #fff;z-index: -1;
+    width: 195px;
+    height: 195px;
+    display: block;
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
+    left: 5px;}
+
+  
+  .hi,
+  .lo {
+    font-size: 20px;font-weight: 500;
+  }
+  .lo{color: #848484;}
+  
+  .current-temp .temp{
+    font-size: 64px;color: rgb(218, 47, 47);font-weight: 500;
+  }
+  .current-temp .temp sup{font-size: 24px;top: -1.5em;}
+
+  
+  .degree {
+    font-size: 24px;
+  }
+  
+  .feels-like {
+    font-size: 16px;
+  }
+  .feels-like span {
+    color: rgb(218, 47, 47);
+  }
+
+  .article-image img {
+    /* max-height: 400px; */
+    object-fit: cover;
+    height: 300px;
+    width: 100%;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+  
+
+
+  

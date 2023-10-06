@@ -5,6 +5,8 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 // import /public/img/logo.png from '/public/img/logo.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 function News(props) {
     let newsData = props.newsData
@@ -13,42 +15,42 @@ function News(props) {
 
     return (
         <div>
-            <Container>
+           <Container>
                 <Row>
                     <Col>
-                        <Card className='border-0 shadow mt-3'>
+                        <Card className='border-0 shadow'>
                             <Card.Body>
+                            <Card.Title className='mb-4'><h5 className='mb-0'>News</h5></Card.Title>
                                 {selectedArticle ? (
                                     <div>
-                                        <button onClick={() => setSelectedArticle(null)}>Back to All News</button>
+                                        <div className="text-end mb-3">
+                                            <button className='btn btn-primary btn-sm' onClick={() => setSelectedArticle(null)}>
+                                                <FontAwesomeIcon icon={faArrowLeft} /> Back to All News
+                                            </button>
+                                        </div>
                                         <h3>{selectedArticle.title}</h3>
-                                        <img src={selectedArticle.image} alt={selectedArticle.title} width={200} className='rounded' />
-                                        <div className="news-date small mb-1 text-secondary">{selectedArticle.source.name}</div>
-                                        <div>{selectedArticle.description}</div>
-                                        <p>{selectedArticle.content}</p>
+                                        <div className="news-date small mb-1 text-secondary">{selectedArticle.date_published}</div>
+                                        <div className='article-image mb-4 fw-semibold' dangerouslySetInnerHTML={{ __html: selectedArticle.content_html }} />
+                                        <p>{selectedArticle.content_text}</p>
                                     </div>
                                 ) : (
                                     <>
-                                        <Card.Title className='mb-4'>
-                                            <h3 className='mb-0'>News</h3>
-                                        </Card.Title>
+                                        
                                         <ul className='list-unstyled mb-0'>
                                             {newsData.map((article) => (
+                                                
                                                 <li key={article.title}>
-                                                    <button
-                                                        onClick={() => setSelectedArticle(article)}
-                                                        className='d-flex text-decoration-none text-black py-3'
-                                                    >
-                                                        <div className='news-img-box'>
-                                                            <img src={article.image} width={200} className='rounded' alt={article.title} />
-                                                        </div>
-                                                        <div className='news-content ms-3'>
-                                                            <h5 className='mb-0'>{article.title}</h5>
-                                                            <div className="news-date small mb-1 text-secondary">{article.source.name}</div>
-                                                            <div>{article.description}</div>
-                                                        </div>
-                                                    </button>
-                                                </li>
+                                                <a to="/" onClick={() => setSelectedArticle(article)} className='d-flex text-decoration-none text-black py-3'>
+                                                    <div className='news-img-box '>
+                                                        <img src={article.image} width={200} className='rounded' />
+                                                    </div>
+                                                    <div className='news-content ms-3'>
+                                                        <h5 className='mb-0'>{article.title}</h5>
+                                                        <div className="news-date small mb-1 text-secondary">{article.date_published}</div>
+                                                        <div className="">{article.content_text}</div>
+                                                    </div>
+                                                </a>
+                                            </li>
                                             ))}
                                         </ul>
                                     </>

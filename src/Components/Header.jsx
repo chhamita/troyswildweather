@@ -13,6 +13,7 @@ import Days from './Days';
 import Today from './Today';
 import News from './News';
 import History from './History';
+import Radar from './Radar';
 
 function Header() {
     const [searchQuery, setSearchQuery] = React.useState('');
@@ -110,17 +111,12 @@ function Header() {
 
 
             const fetchNewsData = () => {
-                // Fetch news data
-                const apiKey = '7a5ef014b6e5fc32bcf3a759280c7e08';
-                const country = region; // Replace with the desired country code
-                const keywords = 'weather OR climate';
-                const encodedKeywords = encodeURIComponent(keywords);
 
                 // Include the "content" parameter in the API request
                 axios
-                    .get(`https://gnews.io/api/v4/top-headlines?country=${country}&q=${encodedKeywords}&token=${apiKey}&content=true`)
+                    .get(`https://rss.app/feeds/v1.1/tCTQCmRRRkvlqXWX.json`)
                     .then((response) => {
-                        const articles = response.data.articles;
+                        const articles = response.data.items;
                         setNewsData(articles);
                     })
                     .catch((error) => {
@@ -129,6 +125,7 @@ function Header() {
             };
 
             fetchNewsData();
+
 
 
             const fetchHistoryData = async (date) => {
@@ -251,7 +248,7 @@ function Header() {
 
                 </Tab>
                 <Tab eventKey="radar" title="Radar" >
-
+                    <Radar currentWeather={currentWeather} />
                 </Tab>
             </Tabs>
         </>
